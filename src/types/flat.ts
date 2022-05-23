@@ -7,8 +7,8 @@
  */
 // eslint-disable-next-line no-shadow
 export enum FlatType {
-    ResisialPremises = 'Жилое',
-    NonResidialPremises = 'Нежилове помещение',
+    Residential = 'Квартира',
+    NonResidential = 'Нежилые помещения',
     Parking = 'паркинг',
 }
 
@@ -18,7 +18,9 @@ export enum FlatType {
 // eslint-disable-next-line no-shadow
 export enum FlatStatus {
     HandedOver = 'Выданы ключи',
+    Signed = 'Договор',
     Reserved = 'Бронь',
+    Processing = 'Оформление',
     ForSale = 'Свободна',
 }
 

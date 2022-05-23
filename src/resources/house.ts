@@ -19,7 +19,7 @@ let normalizedData: IHouseInfo[];
 
 function getNormalizedData(forceRead?: boolean): Promise<IHouseInfo[]> {
   // Данные уже нормализованы.
-  if (normalizedData) {
+  if (normalizedData && !forceRead) {
     return Promise.resolve(normalizedData);
   }
   return import('@/assets/data.json').then((jsonData) => {

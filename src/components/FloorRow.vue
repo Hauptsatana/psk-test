@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-@import '@/styles/_variables.less';
+@import '@/styles/_dimensions.less';
 
 .floor-row {
   &__container {
