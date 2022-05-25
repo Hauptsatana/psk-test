@@ -7,32 +7,23 @@
     {{flatInfo?.planType}}
     <!-- Метка наличия у помещения особенностей -->
     <div v-if="hasMark" class="flat-tile__mark"></div>
-
-    <StackPanel
-      v-model:show="popupVisible"
-      header="Сведения о помещении"
-    >
-      <flat-card :flatInfo="flatInfo" />
-
-    </StackPanel>
   </div>
-
-    <!-- Содержимое панели -->
-
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { FlatStatus, FlatType, NullableFlatInfo } from '@/types/flat';
+import StackOpener from '@/popups/StackOpener';
 
 import FlatCard from './FlatCard.vue';
-import StackPanel from './StackPanel.vue';
+
+/**
+ * Общий опенер карточек помещений, чтобы при клике на любой элемент в шахматке
+ * одновременно была открыта только одна карточка.
+ */
+const cardOpener = new StackOpener();
 
 export default defineComponent({
-  components: {
-    FlatCard,
-    StackPanel,
-  },
   props: {
     flatInfo: {
       type: Object as PropType<NullableFlatInfo>,
@@ -71,7 +62,13 @@ export default defineComponent({
   },
   methods: {
     showPopup() {
-      this.popupVisible = true;
+      cardOpener.open({
+        header: 'Сведения о помещении',
+        contentTemplate: FlatCard,
+        contentOptions: {
+          flatInfo: this.flatInfo,
+        },
+      });
     },
   },
 });

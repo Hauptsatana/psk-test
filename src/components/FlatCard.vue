@@ -112,14 +112,6 @@ export default defineComponent({
       return `${this.flatInfo.cost} ${RUBLE}`;
     },
   },
-  methods: {
-    /**
-     * Закрыть панель
-     */
-    close() {
-      this.$emit('openChanged');
-    },
-  },
 });
 </script>
 

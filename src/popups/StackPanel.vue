@@ -1,6 +1,10 @@
 <template>
-  <teleport to="body" v-if="show">
-    <div class="stack-panel__container">
+  <!-- <teleport to="body" v-if="show"> -->
+    <div
+      class="stack-panel__container"
+      :style="{zIndex: zIndex}"
+      v-if="show"
+    >
       <!-- Заголовок -->
       <div class="stack-panel__header">
         <div class="stack-panel__title">{{header}}</div>
@@ -21,7 +25,7 @@
         </ScrollPanel>
       </div>
     </div>
-  </teleport>
+  <!-- </teleport> -->
 </template>
 
 <script lang="ts">
@@ -40,6 +44,12 @@ export default defineComponent({
     show: Boolean,
     width: Number,
     header: String,
+  },
+  data() {
+    return {
+      // TODO: Получать zIndex от PopupManager
+      zIndex: 100,
+    };
   },
   methods: {
     /**

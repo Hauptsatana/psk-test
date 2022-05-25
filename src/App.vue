@@ -1,14 +1,17 @@
 <template>
+  <popup-manager-component />
   <house-list />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HouseList from './components/HouseList.vue';
+import HouseList from '@/components/HouseList.vue';
+import PopupManagerComponent from '@/popups/PopupManagerComponent.vue';
 
 @Options({
   components: {
     HouseList,
+    PopupManagerComponent,
   },
 })
 export default class App extends Vue {}
