@@ -1,25 +1,49 @@
 <template>
   <div
     :class="appliedClasses"
-    @mouseenter="showPopup()"
-    @focus="showPopup()"
+    @click="showPopup()"
+    @keydown="showPopup()"
   >
     {{flatInfo?.planType}}
     <!-- Метка наличия у помещения особенностей -->
     <div v-if="hasMark" class="flat-tile__mark"></div>
+
+    <StackPanel
+      v-model:show="popupVisible"
+      header="Сведения о помещении"
+    >
+      <flat-card :flatInfo="flatInfo" />
+
+    </StackPanel>
   </div>
+
+    <!-- Содержимое панели -->
+
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { FlatStatus, FlatType, NullableFlatInfo } from '@/types/flat';
 
+import FlatCard from './FlatCard.vue';
+import StackPanel from './StackPanel.vue';
+
 export default defineComponent({
+  components: {
+    FlatCard,
+    StackPanel,
+  },
   props: {
     flatInfo: {
       type: Object as PropType<NullableFlatInfo>,
       required: true,
     },
+  },
+  data() {
+    return {
+      /** Отображение диалога с полными сведениями */
+      popupVisible: false,
+    };
   },
   computed: {
     appliedClasses() {
@@ -37,6 +61,9 @@ export default defineComponent({
         'flat-tile__status-handed-over': status === FlatStatus.HandedOver,
       };
     },
+    /**
+     * Наличие особенностей у помещения.
+     */
     hasMark(): boolean {
       const flatInfo: NullableFlatInfo = this.flatInfo;
       return !!(flatInfo?.subsidy || flatInfo?.marginal || flatInfo?.renovation || flatInfo?.installment);
@@ -44,8 +71,7 @@ export default defineComponent({
   },
   methods: {
     showPopup() {
-      const a = 10;
-      console.log(a);
+      this.popupVisible = true;
     },
   },
 });

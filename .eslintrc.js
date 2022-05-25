@@ -17,5 +17,6 @@ module.exports = {
     'linebreak-style': 'off',
     'max-len': ['error', { code: 120 }],
     'prefer-destructuring': 'off',
+    'vuejs-accessibility/label-has-for': 'off',
   },
 };

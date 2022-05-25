@@ -16,12 +16,19 @@ export default class App extends Vue {}
 
 <style lang="less">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+
   margin-top: 60px;
 }
 </style>
 
+<!-- Общие стили на странице -->
 <style lang="less" src="@/styles/global.less"></style>
+
+<!-- Иконки -->
+ <style src="@/assets/font-awesome/css/fontawesome.css" rel="stylesheet"></style>
+ <style src="@/assets/font-awesome/css/solid.css" rel="stylesheet"></style>
+
+ <!-- Стили PriveVue -->
+<style src="primevue/resources/themes/saga-blue/theme.css"></style>
+<style src="primevue/resources/primevue.min.css"></style>
+<style src="primeflex/primeflex.min.css"></style>

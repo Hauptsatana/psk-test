@@ -1,16 +1,23 @@
 <template>
     <div class="house-block__container">
+
+      <div class="house-block__schema">
         <!-- Этажи -->
         <floor-numbers :maxFloors="maxFloors" />
         <!-- Подъезды -->
         <entrance-block
-            v-for="entrance in houseInfo?.entrances"
+            v-for="entrance in houseInfo.entrances"
             :key="entrance.id"
             class="house-block__entrance"
             :entranceInfo="entrance"
             :max-floors="maxFloors"
         />
+      </div>
 
+      <!-- uid дома -->
+      <div class="house-block__name">
+        Дом {{houseInfo.id}}
+      </div>
     </div>
 </template>
 
@@ -48,13 +55,19 @@ export default defineComponent({
 
 .house-block {
 
-  &__container {
+  &__schema {
     display: flex;
     flex-direction: row;
   }
 
   &__entrance {
     padding-right: @entrance-padding;
+  }
+
+  &__name {
+    font-weight: bold;
+    padding-left: calc(@floor-number-width + @flat-padding);
+    padding-bottom: @house-padding-bottom;
   }
 }
 </style>
